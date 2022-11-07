@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Rishi Bajpai">
+    <title>TWM - Chor Police</title>
+    <link rel="stylesheet" href="slick/slick.css" /> 
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+
+    <style>
+        .slick-list.draggable {
+            padding: 30px 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <a href="#" id="trigger">Click to Fullscreen</a> -->
+    <div class="canvas home-canvas places">
+        <div class="topbar">
+            <div>
+                <a href="#" class="image-navigation profile">
+                    <img src="images/Icons/homepage_topbar_profile.webp" alt="Profile" class="icons">
+                    <a href="#" id="profile">UserName</a>
+                </a>
+            </div>
+            <div id="logo levels">
+                <img src="images/Logo/Logo.webp" class="logo" alt="logo">
+            </div>
+            <div class="store">
+                <a href="#" id="cashback">
+                    <img src="images/cashback.png" style="height: 80px;" alt="">
+                </a>
+                <a href="#" class="image-navigation">
+                    <img src="images/Icons/Homepage_CoinsDisplay.webp" alt="coins" class="icons">
+                    <span id="coins">1234</span>
+                </a>
+            </div>
+        </div>
+        <div class="slidewrapper">
+            <div class="slider">
+
+                <a class="item" onclick="playSound()" onmouseenter="playSound()" id="bank">
+                    <img src="images/Levels/Bank_Treasury.webp" alt="" onclick="window.open('bank.html')" usemap="#image-map">
+                    <map name="image-map">
+                        <area target="_self" alt="terms" title="terms" href="#" coords="446,0,445,54,484,83,525,55,524,0" shape="poly" onmouseover="alert('triggered');">
+                    </map>
+                </a>
+
+                <a class="item" onclick="playSound()" onmouseenter="playSound()" id="temple">
+                    <img src="images/Levels/Golden_Temple.webp" alt="" onclick="window.open('temple.html')">
+                </a>
+
+                <a class="item" onclick="playSound()" onmouseenter="playSound()" id="meuseum">
+                    <img src="images/Levels/Art_Mesuem.webp" alt="" onclick="window.open('museum.html')">
+                </a>
+
+                <a class="item" onclick="playSound()" onmouseenter="playSound()" id="palace">
+                    <img src="images/Levels/Kings_Palace.webp" alt="" onclick="window.open('palace.html')">
+                </a>
+
+            </div>
+        </div>
+        <div class="bottomnav">
+            <a href="index.html">
+                <img src="images/Icons/Home_backButton.webp" alt="back" class="icons" onclick="clickSound()" onmouseenter="clickSound()">
+            </a>
+            <a href="#" id="rulesTrigger">
+                <img src="images/Icons/offerbanner.webp" alt="rules" class="icons offer" onclick="clickSound()" onmouseenter="clickSound()">
+            </a>
+            <div class="store">
+                <a href="#" class="image-navigation">
+                    <img src="images/Icons/Homepage_ShopIcon.webp" alt="ShopIcon" class="icons">
+                </a>
+                <a href="#">
+                    <img src="images/Icons/Homepage_Friends.webp" alt="group" class="icons" onclick="clickSound()" onmouseenter="clickSound()">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Play Mode Popup -->
+    <div class="popup-wrapper">
+        <div id="bank-popup" class="game-popup">
+            <img src="images/Icons/Close Button For All.webp" class="closePopup" alt="">
+            <div class="selections">
+                <a href="bank.html" onclick="clickSound()" onmouseenter="clickSound()"><img src="images/Icons/Play_Online.webp" alt="" class="option"></a>
+                <a href="#" id="bankFriends" onclick="clickSound()" onmouseenter="clickSound()"><img src="images/Icons/Play_With_Friends.webp" alt="" class="option"></a>
+            </div>
+        </div>
+        <div id="temple-popup" class="game-popup">
+            <img src="images/Icons/Close Button For All.webp" class="closePopup" alt="">
+            <div class="selections">
+                <a href="temple.html" onclick="clickSound()" onmouseenter="clickSound()"><img src="images/Icons/Play_Online.webp" alt="" class="option"></a>
+                <a href="#" id="templeFriends" onclick="clickSound()" onmouseenter="clickSound()"><img src="images/Icons/Play_With_Friends.webp" alt="" class="option"></a>
+            </div>
+        </div>
+        <div id="meuseum-popup" class="game-popup">
+            <img src="images/Icons/Close Button For All.webp" class="closePopup" alt="">
+            <div class="selections">
+                <a href="meuseum.html" onclick="clickSound()" onmouseenter="clickSound()"><img src="images/Icons/Play_Online.webp" alt="" class="option"></a>
+                <a href="#" id="meuseumFriends" onclick="clickSound()" onmouseenter="clickSound()"><img src="images/Icons/Play_With_Friends.webp" alt="" class="option"></a>
+            </div>
+        </div>
+        <div id="palace-popup" class="game-popup">
+            <img src="images/Icons/Close Button For All.webp" class="closePopup" alt="">
+            <div class="selections">
+                <a href="palace.html" onclick="clickSound()" onmouseenter="clickSound()"><img src="images/Icons/Play_Online.webp" alt="" class="option"></a>
+                <a href="#" id="palaceFriends" onclick="clickSound()" onmouseenter="clickSound()"><img src="images/Icons/Play_With_Friends.webp" alt="" class="option"></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Match / Join Match popup -->
+    <div class="popup-wrapper">
+        <div id="bank-friends" class="game-popup">
+            <img src="images/Icons/Close Button For All.webp" class="closePopup" alt="">
+            <div class="selections">
+                <a href="#" id="bankSecretCode" onclick="clickSound()" onmouseenter="clickSound()"><img src="images/Icons/Create Match.webp" alt="" class="option"></a>
+                <a href="#" id="copyBankSecret" onclick="clickSound()" onmouseenter="clickSound()"><img src="images/Icons/Join Match.webp" alt="" class="option"></a>
+            </div>
+        </div>
+        <div id="temple-friends" class="game-popup">
+            <img src="images/Icons/Close Button For All.webp" class="closePopup" alt="">
+            <div class="selections">
+                <a href="#" id="templeSecretCode" onclick="clickSound()" onmouseenter="clickSound()"><img src="images/Icons/Create Match.webp" alt="" class="option"></a>
+                <a href="#" id="copyTempleSecret" onclick="clickSound()" onmouseenter="clickSound()"><img src="images/Icons/Join Match.webp" alt="" class="option"></a>
+            </div>
+        </div>
+        <div id="meuseum-friends" class="game-popup">
+            <img src="images/Icons/Close Button For All.webp" class="closePopup" alt="">
+            <div class="selections">
+                <a href="#" id="meuseumSecretCode" onclick="clickSound()" onmouseenter="clickSound()"><img src="images/Icons/Create Match.webp" alt="" class="option"></a>
+                <a href="#" id="copyMeuseumSecret" onclick="clickSound()" onmouseenter="clickSound()"><img src="images/Icons/Join Match.webp" alt="" class="option"></a>
+            </div>
+        </div>
+        <div id="palace-friends" class="game-popup">
+            <img src="images/Icons/Close Button For All.webp" class="closePopup" alt="">
+            <div class="selections">
+                <a href="#" id="palaceSecretCode" onclick="clickSound()" onmouseenter="clickSound()"><img src="images/Icons/Create Match.webp" alt="" class="option"></a>
+                <a href="#" id="copyPalaceSecret" onclick="clickSound()" onmouseenter="clickSound()"><img src="images/Icons/Join Match.webp" alt="" class="option"></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copy Secret Code Popup -->
+    <div class="popup-wrapper">
+        <div id="bankCopy" class="secret-popup">
+            <h3>Share the Secret code with your friend:</h3>
+            <span class="close-popup"></span>
+            <input type="text" class="secret" value="hbfjkb8139410bahdb#678%$bkdsbfjef" required readonly/><br/>
+            <a href="#" class="popup-btn" onclick="clickSound()" onmouseenter="clickSound()" onclick="copyToClipboard()">Copy Code</a>
+        </div>
+        <div id="templeCopy" class="secret-popup">
+            <h3>Share the Secret code with your friend:</h3>
+            <span class="close-popup"></span>
+            <input type="text" class="secret" value="hbfjkb8139410bahdb#678%$bkdsbfjef" required readonly/><br/>
+            <a href="#" class="popup-btn" onclick="clickSound()" onmouseenter="clickSound()" onclick="copyToClipboard()">Copy Code</a>
+        </div>
+        <div id="meuseumCopy" class="secret-popup">
+            <h3>Share the Secret code with your friend:</h3>
+            <span class="close-popup"></span>
+            <input type="text" class="secret" value="hbfjkb8139410bahdb#678%$bkdsbfjef" required readonly/><br/>
+            <a href="#" class="popup-btn" onclick="clickSound()" onmouseenter="clickSound()" onclick="copyToClipboard()">Copy Code</a>
+        </div>
+        <div id="palaceCopy" class="secret-popup">
+            <h3>Share the Secret code with your friend:</h3>
+            <span class="close-popup"></span>
+            <input type="text" class="secret" value="hbfjkb8139410bahdb#678%$bkdsbfjef" required readonly/><br/>
+            <a href="#" class="popup-btn" onclick="clickSound()" onmouseenter="clickSound()" onclick="copyToClipboard()">Copy Code</a>
+        </div>
+    </div>
+
+    <!-- Enter Secret Code Popup -->
+    <div class="popup-wrapper">
+        <div id="bank-secret" class="secret-popup">
+            <h3>Enter the secret code:</h3>
+            <span class="close-popup"></span>
+            <input type="text" class="secret" required/><br/>
+            <a href="bank.html" class="popup-btn" onclick="clickSound()" onmouseenter="clickSound()">Join Now</a>
+        </div>
+        <div id="temple-secret" class="secret-popup">
+            <h3>Enter the secret code:</h3>
+            <span class="close-popup"></span>
+            <input type="text" class="secret" required/><br/>
+            <a href="temple.html" class="popup-btn" onclick="clickSound()" onmouseenter="clickSound()">Join Now</a>
+        </div>
+        <div id="meuseum-secret" class="secret-popup">
+            <h3>Enter the secret code:</h3>
+            <span class="close-popup"></span>
+            <input type="text" class="secret" required/><br/>
+            <a href="meuseum.html" class="popup-btn" onclick="clickSound()" onmouseenter="clickSound()">Join Now</a>
+        </div>
+        <div id="palace-secret" class="secret-popup">
+            <h3>Enter the secret code:</h3>
+            <span class="close-popup"></span>
+            <input type="text" class="secret" required/><br/>
+            <a href="palace.html" class="popup-btn" onclick="clickSound()" onmouseenter="clickSound()">Join Now</a>
+        </div>
+    </div>
+
+    <!-- game loading overlay -->
+    <div class="content-popup hide" id="rules">
+        <div class="content-wrapper">
+            <h1 class="heading-top">How to Play ?</h1>
+            <p class="popup-content">
+                <ul class="popup-content">
+                    <li><span class="bullet">⚛︎</span>For example: You have Imp = 1 Life card. Now you're on the playing screen. </li>
+                    <li><span class="bullet">⚛︎</span>Go ahead and grab Diamond Box. If Police chooses something other than Diamond box like Silver Box, then you looted successfully which will be highlighted on Gameplay mechanics. </li>
+                    <li><span class="bullet">⚛︎</span>Now your loot on the scoreboard is '6-0' right now. 6 representing the Diamond Box, and 0 for the number of life lost. </li>
+                    <li><span class="bullet">⚛︎</span>Let's say in the next round you looted Gold Box and the Police thought Platinum Box, then you again looted box of Gold. </li>
+                    <li><span class="bullet">⚛︎</span>Now your total score is ‘8-0' and you have 0 life’s left. Let's say you plan to loot Platinum Box and police guesses the same. You’re out because police caught You.</li>
+                    <li><span class="bullet">⚛︎</span>Now, since you were only playing with 1 life card, you have lost all your life’s and your turn to loot more boxes is over. </li>
+                    <li><span class="bullet">⚛︎</span>Now, on the playing screen, (your score + 1). This is the number of score the opponent needs to win. So now it’s is your time to be ‘Police’ and opponents time to loot. </li>
+                    <li><span class="bullet">⚛︎</span>The opponent plays 1,0,1,2,0,1 while you tries to catch him guessing 6,6,0,4,1,0. If you sum up the opponents loot, his score is 5 (1+0+1+2+1+0). </li>
+                    <li><span class="bullet">⚛︎</span>Good job Ed! The opponent cannot score anymore loot now because all the life’s are killed. </li>
+                    <li><span class="bullet">⚛︎</span>As you can see, you looted 9-0 with your life at risk and opponent looted 5-0. This means that you were able to rob extra 4 more boxes successfully & claimed as a “True Chor”! 🏆</li>
+                </ul>
+            </p>
+            <a href="#" class="closebutton" id="finish" onclick="clickSound()" onmouseenter="clickSound()">✓ I have read all the rules Carefully</a>
+        </div>
+    </div>
+
+    <!-- game loading overlay -->
+    <div class="content-popup hide" id="cashbackpopup">
+        <div class="content-wrapper everything-center">
+            <h1 class="heading-italics">Cashback Received</h1>
+            <p id="amount"><span>1000</span><img src="images/Icons/Single Coin.webp" alt=""></p>
+            <a href="#" class="closebutton" id="transfer" onclick="clickSound()" onmouseenter="clickSound()">Transfer</a>
+            <p class="note"><strong>Note:</strong> As soon as the user clicks on ‘Transfer ’, Cashback will be added to his TWM Wallet.</p>
+            <p class="note">
+                📢 Avail Cashback on every match you Play, whether you <strong>Win OR Lose</strong> (T&C Apply) 
+                <img src="images/Icons/expand.png" id="expandTerms" alt="">
+                <img src="images/Icons/expand.png" id="closeTerms" class="hide" alt="">
+            </p>
+            
+            <div id="additional-text" class="hide">
+                <h6 class="note">Follow the Steps below to Avail Cashback :</h6>
+                <p class="note"><strong>Step 1 : </strong>Convert your RBIT to TWM coins via RBIT Exchange.</p>
+                <p class="note"><strong>Step 2 : </strong>Visit ‘TWM Staking’ & Choose the desired level to stake your coins.</p>
+                <p class="note"><strong>Step 3 : </strong>Hurray! You are now successfully eligible to receive Cashback.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-view">
+        <div class="notice">
+            <h2>Rotate your phone to Landscape Mode.</h2>
+        </div>
+    </div>
+
+    <audio controls id="audioSource">
+        <source src="/sounds/wav/level-select.wav" type="audio/wav">
+        <source src="/sounds/mp3/level-select.mp3" type="audio/mp3">
+        <source src="/sounds/m4a/level-select.m4a" type="audio/m4a">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio controls id="clickSound">
+        <source src="/sounds/mp3/clicksound.mp3" type="audio/mp3">
+        <source src="/sounds/m4a/clicksound.m4a" type="audio/m4a">
+        <source src="/sounds/wav/clicksound.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+
+
+
+    <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+    <script src="main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    <script>
+
+        //code for rules popup
+        $('#finish').on('click', function(){
+            $('#rules').addClass('hide');
+        });
+
+        $('#cashback').click(function() {
+            $('#cashbackpopup').removeClass('hide');
+        });
+        $('#transfer').click(function() {
+            $('#cashbackpopup').addClass('hide');
+        });
+
+        $('#expandTerms').click(function() {
+            $('#additional-text').removeClass('hide');
+            $('#expandTerms').addClass('hide');
+            $('#closeTerms').removeClass('hide');
+        });
+       
+        $('#closeTerms').click(function() {
+            $('#additional-text').addClass('hide');
+            $('#closeTerms').addClass('hide');
+            $('#expandTerms').removeClass('hide');
+        });
+
+
+        document.getElementById('rulesTrigger').onclick = function() {
+            document.getElementById('rules').classList.remove('hide')
+        };
+
+        //code to play the sound
+        function playSound () {
+            document.getElementById("audioSource").play();
+        }
+        //code to play the sound
+        function clickSound () {
+            document.getElementById("clickSound").play();
+        }
+        
+        $('.slider').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            arrows: true,
+            dots: false,
+            centerMode: true,
+            variableWidth: true,
+            infinite: true,
+            focusOnSelect: true,
+            cssEase: 'linear',
+            touchMove: false,
+            autoplay: false,
+            autoplaySpeed: 1500,
+            prevArrow:'<button class="slick-arrow slick-prev"><img src="images/Icons/arrow-left.png"/></button>',
+            nextArrow:'<button class="slick-arrow slick-next"><img src="images/Icons/arrow-right.png"/></button>',
+            
+            responsive: [                        
+                {
+                breakpoint: 576,
+                    settings: {
+                        centerMode: false,
+                        variableWidth: false,
+                    }
+                },
+            ]
+        });
+
+        var imgs = $('.slider img');
+        imgs.each(function(){
+            var item = $(this).closest('.item');
+            item.css({
+                'background-image': 'url(' + $(this).attr('src') + ')', 
+                'background-position': 'center',            
+                '-webkit-background-size': 'contain',
+                'background-size': 'contain', 
+            });
+            $(this).hide();
+        });
+
+        $('.slick-prev').on('click', function(){
+            document.getElementById("audioSource").play();
+        })
+        $('.slick-next').on('click', function(){
+            document.getElementById("audioSource").play();
+        })
+
+        //controls to show/hide popups
+        $('.closePopup').on('click', function(){
+            $('.canvas').removeClass('blur');
+            $('.slidewrapper').removeClass('hide');
+            $('.topbar').removeClass('hide');
+            $('.bottomnav').removeClass('hide');
+            $('.game-popup').removeClass('visible');
+            $('.game-popup').removeClass('show');
+            window.location.reload();
+        });
+
+        $('.close-popup').on('click', function(){
+            $('.canvas').removeClass('blur');
+            $('.slidewrapper').removeClass('hide');
+            $('.topbar').removeClass('hide');
+            $('.bottomnav').removeClass('hide');
+            $('.game-popup').removeClass('show');
+            $('.secret-popup').removeClass('visible');
+            window.location.reload();
+        });
+
+        $('#bank').on('click', function(){
+            $('.canvas').addClass('blur');
+            $('.slidewrapper').addClass('hide');
+            $('.topbar').addClass('hide');
+            $('.bottomnav').addClass('hide');
+            $('#bank-popup').addClass('visible');
+        })
+
+        $('#temple').on('click', function(){
+            $('.canvas').addClass('blur');
+            $('.slidewrapper').addClass('hide');
+            $('.topbar').addClass('hide');
+            $('.bottomnav').addClass('hide');
+            $('#temple-popup').addClass('visible');
+        })
+
+        $('#meuseum').on('click', function(){
+            $('.canvas').addClass('blur');
+            $('.slidewrapper').addClass('hide');
+            $('.topbar').addClass('hide');
+            $('.bottomnav').addClass('hide');
+            $('#meuseum-popup').addClass('visible');
+        })
+
+        $('#palace').on('click', function(){
+            $('.canvas').addClass('blur');
+            $('.slidewrapper').addClass('hide');
+            $('.topbar').addClass('hide');
+            $('.bottomnav').addClass('hide');
+            $('#palace-popup').addClass('visible');
+        })
+
+        //show friends popup to choose between create and join match
+        $('#bankFriends').on('click', function() {
+            $('.canvas').addClass('blur');
+            $('.game-popup').removeClass('visible');
+            $('.secret-popup').addClass('hide');
+            $('#bank-friends').addClass('show');
+        })
+
+        $('#templeFriends').on('click', function() {
+            $('.canvas').addClass('blur');
+            $('.game-popup').removeClass('visible');
+            $('.secret-popup').addClass('hide');
+            $('#temple-friends').addClass('show');
+        })
+        
+        $('#meuseumFriends').on('click', function() {
+            $('.canvas').addClass('blur');
+            $('.game-popup').removeClass('visible');
+            $('.secret-popup').addClass('hide');
+            $('#meuseum-friends').addClass('show');
+        })
+
+        $('#palaceFriends').on('click', function() {
+            $('.canvas').addClass('blur');
+            $('.game-popup').removeClass('visible');
+            $('.secret-popup').addClass('hide');
+            $('#palace-friends').addClass('show');
+        })
+
+        //show friends create match popup -- match ID will be given to copy 
+        $('#bankSecretCode').on('click', function() {
+            $('.canvas').addClass('blur');
+            $('.game-popup').removeClass('visible');
+            $('.game-popup').removeClass('show');
+            $('#bankCopy').removeClass('hide');
+            $('#bankCopy').addClass('show');
+        })
+
+        $('#templeSecretCode').on('click', function() {
+            $('.canvas').addClass('blur');
+            $('.game-popup').removeClass('visible');
+            $('.game-popup').removeClass('show');
+            $('#templeCopy').removeClass('hide');
+            $('#templeCopy').addClass('show');
+        })
+        
+        $('#meuseumSecretCode').on('click', function() {
+            $('.canvas').addClass('blur');
+            $('.game-popup').removeClass('visible');
+            $('.game-popup').removeClass('show');
+            $('#meuseumCopy').removeClass('hide');
+            $('#meuseumCopy').addClass('show');
+        })
+
+        $('#palaceSecretCode').on('click', function() {
+            $('.canvas').addClass('blur');
+            $('.game-popup').removeClass('visible');
+            $('.game-popup').removeClass('show');
+            $('#palaceCopy').removeClass('hide');
+            $('#palaceCopy').addClass('show');
+        })
+
+        //show friends secret input popup -- secret input will be given to paste match ID
+        $('#copyBankSecret').on('click', function() {
+            $('.canvas').addClass('blur');
+            $('.game-popup').removeClass('visible');
+            $('.game-popup').removeClass('show');
+            $('#bank-secret').removeClass('hide');
+            $('#bank-secret').addClass('show');
+        })
+
+        $('#copyTempleSecret').on('click', function() {
+            $('.canvas').addClass('blur');
+            $('.game-popup').removeClass('visible');
+            $('.game-popup').removeClass('show');
+            $('#temple-secret').removeClass('hide');
+            $('#temple-secret').addClass('show');
+        })
+        
+        $('#copyMeuseumSecret').on('click', function() {
+            $('.canvas').addClass('blur');
+            $('.game-popup').removeClass('visible');
+            $('.game-popup').removeClass('show');
+            $('#meuseum-secret').removeClass('hide');
+            $('#meuseum-secret').addClass('show');
+        })
+
+        $('#copyPalaceSecret').on('click', function() {
+            $('.canvas').addClass('blur');
+            $('.game-popup').removeClass('visible');
+            $('.game-popup').removeClass('show');
+            $('#palace-secret').removeClass('hide');
+            $('#palace-secret').addClass('show');
+        })
+
+        //closing the popup
+        $('.popup-btn').on('click', function(){
+            $('.secret-popup').removeClass('visible');
+            $('.game-popup').removeClass('visible');
+            $('.canvas').removeClass('blur'); 
+        })
+
+        //copying the secret code to clipboard
+        function copyToClipboard() {
+            // code to copy the text in the input field
+        }
+
+    </script>
+
+</body>
+</html>

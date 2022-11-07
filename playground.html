@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TWM Chor Police - Playground</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+    <style>
+        body{
+            overflow: hidden;
+        }
+        .selections {
+            width: 120%;
+        }
+    </style>
+</head>
+<body>
+    <!-- <a href="#" id="trigger">Click to Fullscreen</a> -->
+    <div id="game-canvas">
+
+        <div id="topbar" onclick="hideUseButton()">
+            <div class="flex-console" id="chor-side">
+                <a href="#" class="chat" id="chor-chat">
+                    <img src="images/Icons/chatyellow.webp" class="chaticon" onclick="chatSound();" onmouseenter="chatSound();"/>
+                </a>
+                <div id="heart">
+                    <span class="lifecount" id="chorlife">2</span>
+                </div>
+                <div class="console">
+                    <div class="stats">
+                        <div class="score-bar">
+                            <span class="title" style="color: #ffb600;">CHORR</span>
+                            <span class="score runs">0</span>
+                            <span class="score">-</span>
+                            <span class="score wickets">0</span>
+                            <span class="title" style="color: #ffb600;">AHMED</span>
+                        </div>
+                        <div class="circle popout">
+                            <img class="popout" src="images/Icons/Plus_icon.webp" alt="plus icon" onclick="showUseButton();">
+                            <button class="popoutAction" id="usePower">USE</button>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div id="chor-top" class="top-border"></div>
+                        <div id="chor-bottom" class="bottom-border"></div>
+                        <div id="chor-left" class="left"></div>
+                        <div id="chor-right" class="right"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="coins-counter">
+                <span id="coin-count">1120</span>
+            </div>
+
+            <div class="flex-console" id="police-side">
+                <div class="console disable-player">
+                    <div class="box">
+                        <div id="police-top" class="top-border"></div>
+                        <div id="police-bottom" class="bottom-border"></div>
+                        <div id="police-left" class="left"></div>
+                        <div id="police-right" class="right"></div>
+                    </div>
+                    <div class="stats">
+                        <div class="score-bar">
+                            <span class="title" style="color: #2ba1f0;">POLICE</span>
+                            <span class="score runs">0</span>
+                            <span class="score">-</span>
+                            <span class="score wickets">0</span>
+                            <span class="title" style="color: #2ba1f0;">GEORGE</span>
+                        </div>
+                        <div class="circle"><img src="images/Icons/Plus_icon.webp" onclick="showPoliceChance();" alt=""></div>
+                    </div>
+                </div>
+                <div id="heart" class="disable-player">
+                    <span class="lifecount" id="policelife">2</span>
+                </div>
+                <a href="#" class="chat" id="police-chat" onclick="chatSound();" onmouseenter="chatSound();">
+                    <img src="images/Icons/chatblue.webp" class="chaticon"/>
+                </a> 
+            </div>   
+        </div>
+
+        <div id="boxes">
+            <!-- <a href="#" id="stonebox">
+                
+            </a> -->
+            <img src="images/Boxes/Stone Box.webp" alt="box" id="stone" onclick="startConfetti();" onmouseenter="boxSound()" class="floating-box animatebox" data-aos="zoom-in">
+            <img src="images/Boxes/Silver.webp" alt="box" id="silver" onclick="startConfetti();" onmouseenter="boxSound()" class="floating-box animatebox" data-aos="zoom-in">
+            <img src="images/Boxes/Gold.webp" alt="box" id="gold" onclick="startConfetti();" onmouseenter="boxSound()" class="floating-box animatebox" data-aos="zoom-in">
+            <img src="images/Boxes/Platinum.webp" alt="box" id="platinum" onclick="startConfetti();" onmouseenter="boxSound()" class="floating-box animatebox" data-aos="zoom-in">
+            <img src="images/Boxes/Diamond.webp" alt="box" id="diamond" onclick="startConfetti();" onmouseenter="boxSound()" class="floating-box animatebox" data-aos="zoom-in">
+        </div>
+
+        <div class="progress">
+            <div class="progress-value"></div>
+        </div>
+
+        <a href="#" class="backbtn-fixed" id="leavematch">
+            <img src="images/Icons/Home_backButton.webp" alt="back" class="icons" onclick="clickSound()" onmouseenter="clickSound()">
+        </a>
+
+        <div class="message-modal" id="chorChatBox">
+            <div class="emoji-bar">
+                <a href="#" class="emoji cmoji">😄</a>
+                <a href="#" class="emoji cmoji">🥰</a>
+                <a href="#" class="emoji cmoji">🥳</a>
+                <a href="#" class="emoji cmoji">🙃</a>
+                <a href="#" class="emoji cmoji">😂</a>
+                <a href="#" class="emoji cmoji">😁</a>
+                <a href="#" class="emoji cmoji">🤣</a>
+                <a href="#" class="emoji cmoji">😝</a>
+                <a href="#" class="emoji cmoji">🤓</a>
+                <a href="#" class="emoji cmoji">🤨</a>
+                <a href="#" class="emoji cmoji">🤬</a>
+                <a href="#" class="emoji cmoji">😤</a>
+                <a href="#" class="emoji cmoji">🙄</a>
+                <a href="#" class="emoji cmoji">😈</a>
+                <a href="#" class="emoji cmoji">🤑</a>
+            </div>
+            <div class="messages">
+                <a href="#" class="message c-msg">You, tough guy, stop Playing!</a>
+                <a href="#" class="message c-msg">Asshole, You’re breaking the law!</a>
+                <a href="#" class="message c-msg">You have your last chance!</a>
+                <a href="#" class="message c-msg">Come on wise guy, give it a shot.</a>
+                <a href="#" class="message c-msg">Hope for your sake that I don't succeed!</a>
+                <a href="#" class="message c-msg">Don't make me angry!</a>
+                <a href="#" class="message c-msg">You're going nowhere</a>
+                <a href="#" class="message c-msg">My play will definitely "loosen" you up.</a>
+                <a href="#" class="message c-msg">You’re screwed, pal!</a>
+                <a href="#" class="message c-msg">Welcome to the shitstorm, pal.</a>
+                <a href="#" class="message c-msg">Okay, we're done. Calm down now.</a>
+                <a href="#" class="message c-msg">I give up! Relax, relax.</a>
+                <a href="#" class="message c-msg">That’s the best you got?</a>
+                <a href="#" class="message c-msg">Your time is up, man. Mine? it's only just begun.</a>
+                <a href="#" class="message c-msg">You thought you were going to be lucky this time, didn't you?</a>
+            </div>
+        </div>
+        
+        <div class="message-modal" id="policeChatBox">
+            <div class="emoji-bar">
+                <a href="#" class="emoji pmoji">😄</a>
+                <a href="#" class="emoji pmoji">🥰</a>
+                <a href="#" class="emoji pmoji">🥳</a>
+                <a href="#" class="emoji pmoji">🙃</a>
+                <a href="#" class="emoji pmoji">😂</a>
+                <a href="#" class="emoji pmoji">😁</a>
+                <a href="#" class="emoji pmoji">🤣</a>
+                <a href="#" class="emoji pmoji">😝</a>
+                <a href="#" class="emoji pmoji">🤓</a>
+                <a href="#" class="emoji pmoji">🤨</a>
+                <a href="#" class="emoji pmoji">🤬</a>
+                <a href="#" class="emoji pmoji">😤</a>
+                <a href="#" class="emoji pmoji">🙄</a>
+                <a href="#" class="emoji pmoji">😈</a>
+                <a href="#" class="emoji pmoji">🤑</a>
+            </div>
+            <div class="messages">
+                <a href="#" class="message p-msg">You, tough guy, stop Playing!</a>
+                <a href="#" class="message p-msg">Asshole, You’re breaking the law!</a>
+                <a href="#" class="message p-msg">You have your last chance!</a>
+                <a href="#" class="message p-msg">Come on wise guy, give it a shot.</a>
+                <a href="#" class="message p-msg">Hope for your sake that I don't succeed!</a>
+                <a href="#" class="message p-msg">Don't make me angry!</a>
+                <a href="#" class="message p-msg">You're going nowhere</a>
+                <a href="#" class="message p-msg">My play will definitely "loosen" you up.</a>
+                <a href="#" class="message p-msg">You’re screwed, pal!</a>
+                <a href="#" class="message p-msg">Welcome to the shitstorm, pal.</a>
+                <a href="#" class="message p-msg">Okay, we're done. Calm down now.</a>
+                <a href="#" class="message p-msg">I give up! Relax, relax.</a>
+                <a href="#" class="message p-msg">That’s the best you got?</a>
+                <a href="#" class="message p-msg">Your time is up, man. Mine? it's only just begun.</a>
+                <a href="#" class="message p-msg">You thought you were going to be lucky this time, didn't you?</a>
+            </div>
+        </div>
+        
+        <div class="received chormsg" id="chormsg">
+            <span class="msgtext" id="policesent">Message sent from police appears here  . . .</span>
+        </div>
+        <div class="received policemsg" id="policemsg">
+            <span class="msgtext" id="chorsent">Message sent from chor appears here . . . </span>
+        </div>
+
+        <div class="received chormoji" id="chormoji">
+            <span class="msgmoji" id="policesentmoji"></span>
+        </div>
+        <div class="received policemoji" id="policemoji">
+            <span class="msgmoji" id="chorsentmoji"></span>
+        </div>
+
+    </div>
+
+    <!-- Create Match / Join Match popup -->
+    <div id="leave-match" class="game-popup">
+        <img src="images/Icons/Close Button For All.webp" id="closePopup" alt="">
+        <div class="selections">
+            <a href="#" id="goBack" class="match-option" onclick="clickSound()" onmouseenter="clickSound()">
+                <img src="images/Icons/stayButton.webp" alt="">
+            </a>
+            <a href="#" id="yesLeave" class="match-option" onclick="clickSound()" onmouseenter="clickSound()">
+                <img src="images/Icons/Leave Button.webp" alt="">
+            </a>
+        </div>
+    </div>
+
+    <div id="mobile-view">
+        <div class="notice">
+            <h2>Rotate your phone to Landscape Mode.</h2>
+        </div>
+    </div>
+
+    <div class="chance-overlay hide" id="chorchance" data-aos="flip-up" data-aos-easing="linear">
+        <div class="content-center">
+            <h2 class="text">Ahmed's <br> Turn ></h2>
+        </div>
+    </div>
+    <div class="chance-overlay hide" id="policechance"data-aos="flip-up" data-aos-duration="1500">
+        <div class="content-center">
+            <h2 class="text">George's <br> Turn ></h2>
+        </div>
+    </div>
+
+    <!-- All Audios -->
+    <div class="hidden">
+        <!-- box selection sound -->
+        <audio controls id="boxSelect">
+            <source src="/sounds/wav/box-select.wav" type="audio/wav">
+            <source src="/sounds/mp3/box-select.mp3" type="audio/mp3">
+            <source src="/sounds/m4a/box-select.m4a" type="audio/m4a">
+            Your browser does not support the audio element.
+        </audio>
+
+        <!-- box selection sound -->
+        <audio controls id="chatPop">
+            <source src="/sounds/wav/chatpopup.wav" type="audio/wav">
+            <source src="/sounds/mp3/chatpopup.mp3" type="audio/mp3">
+            <source src="/sounds/m4a/chatpopup.m4a" type="audio/m4a">
+            Your browser does not support the audio element.
+        </audio>
+
+        <!-- message receive sound -->
+        <audio controls id="msgSent">
+            <source src="/sounds/wav/game-unlock.wav" type="audio/wav">
+            <source src="/sounds/mp3/game-unlock.mp3" type="audio/mp3">
+            <source src="/sounds/m4a/game-unlock.m4a" type="audio/m4a">
+            Your browser does not support the audio element.
+        </audio>
+
+        <!-- before box selection sound -->
+        <audio controls id="beforeBox">
+            <source src="/sounds/wav/cubeBeforeSelection.wav" type="audio/wav">
+            <source src="/sounds/mp3/cubeBeforeSelection.mp3" type="audio/mp3">
+            <source src="/sounds/m4a/cubeBeforeSelection.m4a" type="audio/m4a">
+            Your browser does not support the audio element.
+        </audio>
+
+        <!-- box after selection sound -->
+        <audio controls id="afterBox">
+            <source src="/sounds/wav/cubeAfterSelection.wav" type="audio/wav">
+            <source src="/sounds/mp3/cubeAfterSelection.mp3" type="audio/mp3">
+            <source src="/sounds/m4a/cubeAfterSelection.m4a" type="audio/m4a">
+            Your browser does not support the audio element.
+        </audio>
+
+        <!-- the file voiceover.mp3 needs to be broken into these 4 pieces -->
+        <!-- player win voiceover -->
+        <!-- <audio controls id="playerWin">
+            <source src="/sounds/wav/playerWin.wav" type="audio/wav">
+            <source src="/sounds/mp3/playerWin.mp3" type="audio/mp3">
+            <source src="/sounds/m4a/playerWin.m4a" type="audio/m4a">
+            Your browser does not support the audio element.
+        </audio> -->
+
+        <!-- bonus round -->
+        <!-- <audio controls id="bonusRound">
+            <source src="/sounds/wav/bonusRound.wav" type="audio/wav">
+            <source src="/sounds/mp3/bonusRound.mp3" type="audio/mp3">
+            <source src="/sounds/m4a/bonusRound.m4a" type="audio/m4a">
+            Your browser does not support the audio element.
+        </audio> -->
+
+        <!-- player lose voiceover -->
+        <!-- <audio controls id="playerLose">
+            <source src="/sounds/wav/playerLose.wav" type="audio/wav">
+            <source src="/sounds/mp3/playerLose.mp3" type="audio/mp3">
+            <source src="/sounds/m4a/playerLose.m4a" type="audio/m4a">
+            Your browser does not support the audio element.
+        </audio> -->
+
+        <!-- game over voiceover -->
+        <!-- <audio controls id="gameOver">
+            <source src="/sounds/wav/gameOver.wav" type="audio/wav">
+            <source src="/sounds/mp3/gameOver.mp3" type="audio/mp3">
+            <source src="/sounds/m4a/gameOver.m4a" type="audio/m4a">
+            Your browser does not support the audio element.
+        </audio> -->
+
+        <!-- scoreboard winner -->
+        <audio controls id="sboardWinner">
+            <source src="/sounds/wav/scoreboardWinner.wav" type="audio/wav">
+            <source src="/sounds/mp3/scoreboardWinner.mp3" type="audio/mp3">
+            <source src="/sounds/m4a/scoreboardWinner.m4a" type="audio/m4a">
+            Your browser does not support the audio element.
+        </audio>
+
+    </div>
+
+</body>
+
+<script src="jquery-3.6.0.min.js"></script>
+<script src="main.js"></script>
+<script src="confetti.js"></script>
+
+<script>
+
+    //for box select sound
+    function boxSound() {
+        document.getElementById('boxSelect').play();
+    }
+    //for chat popup
+    function chatSound() {
+        document.getElementById('chatPop').play();
+    }
+    //for message sent
+    function msgSound() {
+        document.getElementById('msgSent').play();
+    }
+    //box after selection
+    function afterBoxSound() {
+        document.getElementById('afterBox').play();
+    }
+    //player win
+    function playerWinVo() {
+        document.getElementById('playerWin').play();
+    }
+    //bonus round
+    function bonusRound() {
+        document.getElementById('bonusRound').play();
+    }
+    //player lose
+    function playerLose() {
+        document.getElementById('playerLose').play();
+    }
+    //game over
+    function gameOver() {
+        document.getElementById('gameOver').play();
+    }
+    //scoreboard winner
+    function sboardWinner() {
+        document.getElementById('sboardWinner').play();
+    }
+
+    //before box selection
+    window.onload = function beforeBoxSound() {
+       document.getElementById('beforeBox').play();
+    }
+
+    document.getElementById('leavematch').onclick = function() {
+        $('#game-canvas').addClass('blur');
+        $('#leave-match').addClass('show');
+    }
+
+    document.getElementById('closePopup').onclick = function() {
+        $('#game-canvas').removeClass('blur');
+        $('#leave-match').removeClass('show');
+    }
+
+    document.getElementById('goBack').onclick = function() {
+        $('#game-canvas').removeClass('blur');
+        $('#leave-match').removeClass('show');
+    }
+
+    document.getElementById('yesLeave').onclick = function() {
+        $('#game-canvas').removeClass('blur');
+        $('#leave-match').removeClass('show');
+        window.location.replace("/result.html");
+
+    }
+
+    var buttonClicked = 0;
+    function showUseButton() {
+        buttonClicked = 1;
+        console.log(buttonClicked);
+        $('#usePower').addClass('visible');
+    }
+
+    $('#usePower').click(function() {
+        $('#usePower').removeClass('visible');
+    });
+
+
+</script>
+
+</html> 

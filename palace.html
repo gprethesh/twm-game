@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Rishi Bajpai">
+    <title>TWM - Chor Police</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" /> 
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <!-- <a href="#" id="trigger">Click to Fullscreen</a> -->
+    <div class="canvas places palace">
+        <div class="topbar">
+            <div class="gamelogo">
+                <img src="images/game-levels/palace.webp" class="logo" alt="logo">
+            </div>
+            <div class="store">
+                <a href="#" class="image-navigation">
+                    <img src="images/Icons/Homepage_CoinsDisplay.webp" alt="coins" class="icons">
+                    <span id="coins">1234</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="battleground">
+            <div class="player-card" id="player1">
+                <img src="images/Icons/Home Profile Picture.webp" alt="" id="playerOneImage" class="player">
+                <h3 id="playerOneName">AHMED</h3>
+                <div class="coins">
+                    <span id="playerOneCoins">1000</span>
+                    <span class="coin-single coin-left"></span>
+                    <span class="coin-single coin-left"></span>
+                    <span class="coin-single coin-left"></span>
+                    <span class="coin-single coin-left"></span>
+                    <span class="coin-single coin-left"></span>
+                    <span class="coin-single coin-left"></span>
+                </div>
+            </div>
+            <div id="versus">
+                <img src="images/Icons/versus.webp" alt="" id="vs">
+                <img src="images/Icons/battlecoins.webp" alt="" id="battlecoins">
+                <span id="coinstake">1234</span>
+            </div>
+            <div class="player-card" id="player2">
+                <img src="images/Icons/Home Profile Picture.webp" alt="" id="playerTwoImage" class="player">
+                <h3 id="playerTwoName">GEORGE</h3>
+                <div class="coins">
+                    <span class="coin-single coin-right"></span>
+                    <span class="coin-single coin-right"></span>
+                    <span class="coin-single coin-right"></span>
+                    <span class="coin-single coin-right"></span>
+                    <span class="coin-single coin-right"></span>
+                    <span class="coin-single coin-right"></span>
+                    <span id="playerTwoCoins">1000</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottomnav">
+            <a href="places.html">
+                <img src="images/Icons/Home_backButton.webp" alt="back" class="icons">
+            </a>
+        </div>
+    </div>
+
+    <div id="mobile-view">
+        <div class="notice">
+            <h2>Rotate your phone to Landscape Mode.</h2>
+        </div>
+    </div>
+
+    <!-- game loading overlay -->
+    <div class="popup-block hidepopup" id="loading">
+        <h2>Game is loading, Please wait!</h2>
+        <div class="progress-wrapper">
+            <div id="myBar" class="progress-bar" style="height:24px; width:20%; border-radius: 10px;"></div>
+            </div>
+            <p id="progress">10%</p>
+        </div>
+    </div>
+
+    <audio controls autoplay>
+        <source src="/sounds/wav/coinflip-sound.wav" type="audio/wav">
+        <source src="/sounds/mp3/coinflip-sound.mp3" type="audio/mp3">
+        <source src="/sounds/m4a/coinflip-sound.m4a" type="audio/m4a">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+    <script src="main.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            // Handler for .ready() called.
+            window.setTimeout(function () {
+                location.href = "playground.html?filename=palace.webp";
+            }, 3000);
+        });
+
+        $("#coinstake").click(function() {
+            $('#loading').removeClass('hidepopup');
+            move();
+        });
+
+        function move() {
+            var elem = document.getElementById("myBar");   
+            var width = 10;
+            var id = setInterval(frame, 300);
+            function frame() {
+                if (width >= 100) {
+                    clearInterval(id);
+                } else {
+                    width++; 
+                    elem.style.width = width + '%'; 
+                    document.getElementById("progress").innerHTML = width * 1  + '%';
+                }
+            }
+        }
+
+    </script>
+
+</body>
+</html>

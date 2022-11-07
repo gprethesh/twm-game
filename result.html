@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Rishi Bajpai">
+    <meta http-equiv="ScreenOrientation" content="autoRotate:enabled">
+    <title>TWM - Chor Police</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <!-- <a href="#" id="trigger">Click to Fullscreen</a> -->
+    <div class="canvas result-canvas" id="canvas">
+        <div class="middle">
+            <img src="images/Logo/Logo.webp" class="logo mainlogo" alt="">
+        </div>
+        <div class="content">
+            <div class="score-panel">
+                <h2>SCORE BOARD</h2>
+                <div class="panel">
+                    <div class="player-card">
+                        <div class="player-profile">
+                            <!-- dynamic image will be loaded from backend using this img tag -->
+                            <!-- <img src="" alt=""> -->
+                        </div>
+                        <h4 class="playername">AHMED</h4>
+                        <h1 class="match-score">90</h1>
+                        <h4 class="match-title text-yellow">WINNER</h4>
+                        <div class="arrow"><img src="images/Icons/expand.png" id="winnerArrow" alt="arrow"></div>
+                    </div>
+                    <div class="hrule"></div>
+                    <div class="player-card">
+                        <div class="player-profile">
+                            <!-- dynamic image will be loaded from backend using this img tag -->
+                            <!-- <img src="" alt=""> -->
+                        </div>
+                        <h4 class="playername">GEORGE</h4>
+                        <h1 class="match-score">70</h1>
+                        <h4 class="match-title text-blue">LOSER</h4>
+                        <div class="arrow"><img src="images/Icons/expand.png" id="loserArrow" alt="arrow"></div>
+                    </div>
+                </div>
+                <div id="winnerBuff" class="buffPopup closed">
+                    <div class="buffheader buff-flex">
+                        <h3 class="yellow-heading text-yellow">BUFF ACTIVATED</h3>
+                        <button id="closeWinnerBuff"><img src="images/Icons/Close Button For All.webp" alt=""></button>
+                    </div>
+                    <div class="buff-center">
+                        <div class="buff-flex">
+                            <p>Subtotal</p>
+                            <p class="number">88</p>
+                        </div>
+                        <div class="buff-flex">
+                            <p>Mystery Box</p>
+                            <img src="images/Icons/UNLUCKY FUSION LOGO.png" alt="icon">
+                            <p class="number green">(+) 04</p>
+                        </div>
+                        <div class="buff-flex">
+                            <p>Curse Box</p>
+                            <img src="images/Icons/LUCKY FUSION LOGO.png" alt="icon">
+                            <p class="number red">(-) 02</p>
+                        </div>
+                        <div class="buff-flex">
+                            <p>Total</p>
+                            <p class="number">90</p>
+                        </div>
+                    </div>
+                    <div class="buff-footer">
+                        <div class="buff-flex">
+                            <p>Fire Chakra</p>
+                            <img src="images/Icons/heart_on_fire.png" alt="heart on fire">
+                            <p class="number red">(-) 1</p>
+                        </div>
+                        <div class="buff-flex">
+                            <p>Water Chakra</p>
+                            <img src="images/Icons/heart_on_water.png" alt="heart on fire">
+                            <p class="number green">(+) 1</p>
+                        </div>
+                        <div class="buff-flex">
+                            <p>Life Left</p>
+                            <p class="number">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="loserBuff" class="buffPopup closed">
+                    <div class="buffheader buff-flex">
+                        <h3 class="yellow-heading text-yellow">BUFF ACTIVATED</h3>
+                        <button id="closeLoserBuff"><img src="images/Icons/Close Button For All.webp" alt=""></button>
+                    </div>
+                    <div class="buff-center">
+                        <div class="buff-flex">
+                            <p>Subtotal</p>
+                            <p class="number">88</p>
+                        </div>
+                        <div class="buff-flex">
+                            <p>Mystery Box</p>
+                            <img src="images/Icons/UNLUCKY FUSION LOGO.png" alt="icon">
+                            <p class="number green">(+) 04</p>
+                        </div>
+                        <div class="buff-flex">
+                            <p>Curse Box</p>
+                            <img src="images/Icons/LUCKY FUSION LOGO.png" alt="icon">
+                            <p class="number red">(-) 02</p>
+                        </div>
+                        <div class="buff-flex">
+                            <p>Total</p>
+                            <p class="number">90</p>
+                        </div>
+                    </div>
+                    <div class="buff-footer">
+                        <div class="buff-flex">
+                            <p>Fire Chakra</p>
+                            <img src="images/Icons/heart_on_fire.png" alt="heart on fire">
+                            <p class="number red">(-) 1</p>
+                        </div>
+                        <div class="buff-flex">
+                            <p>Water Chakra</p>
+                            <img src="images/Icons/heart_on_water.png" alt="heart on fire">
+                            <p class="number green">(+) 1</p>
+                        </div>
+                        <div class="buff-flex">
+                            <p>Life Left</p>
+                            <p class="number">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <h4 class="statement">You just lost the Chorr!</h4>
+                <div class="button-group">
+                    <a href="index.html" class="buttonblue" onmouseenter="playSound()" onclick="playSound()">HOME</a>
+                    <a href="#" class="buttonblue" id="ask" onmouseenter="playSound()" onclick="playSound()">PLAY AGAIN</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-center hidepopup" id="playAgain">
+        <div class="play-again">
+            <h2>George is asking you to play again?</h2>
+            <div class="button-group">
+                <a href="index.html" class="buttonwhite" onmouseenter="playSound()" onclick="playSound()">Not Interested</a>
+                <a href="http://127.0.0.1:5500/playground.html?filename=meuseumbg.webp" class="buttonwhite" onmouseenter="playSound()" onclick="playSound()">Play Again</a>
+            </div>
+        </div>
+    </div>
+
+    <a href="index.html" class="backbtn-fixed">
+        <img src="images/Icons/Home_backButton.webp" alt="back" class="icons" onclick="clickSound()" onmouseenter="clickSound()">
+    </a>
+
+    <div id="mobile-view">
+        <div class="notice">
+            <h2>Rotate your phone to Landscape Mode.</h2>
+        </div>
+    </div>
+
+    <audio controls id="audioSource">
+        <source src="/sounds/mp3/clicksound.mp3" type="audio/mp3">
+        <source src="/sounds/m4a/clicksound.m4a" type="audio/m4a">
+        <source src="/sounds/wav/clicksound.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+
+        //code to play the sound
+        function playSound () {
+            document.getElementById("audioSource").play();
+        }
+
+        $("#ask").click(function() {
+            $('#playAgain').removeClass('hidepopup');
+        });
+
+        $("#winnerArrow").click(function() {
+            $("#winnerBuff").removeClass('closed');
+            $("#winnerBuff").addClass("left");
+        });
+
+        $("#loserArrow").click(function() {
+            $("#loserBuff").removeClass('closed');
+            $("#loserBuff").addClass("right");
+        });
+
+        $("#closeWinnerBuff").click(function() {
+            $("#winnerBuff").addClass('closed');
+            $(".buffPopup").removeClass("left");
+        });
+
+        $("#closeLoserBuff").click(function() {
+            $("#loserBuff").addClass('closed');
+            $(".buffPopup").removeClass("left");
+        });
+        
+
+    </script>
+
+    <script src="main.js"></script>
+
+</body>
+</html>
